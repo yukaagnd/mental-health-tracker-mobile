@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_tracker/widgets/left_drawer.dart';
+import 'moodentry_form.dart';
+import 'package:mental_health_tracker/widgets/mood_card.dart';
 
 class MyHomePage extends StatelessWidget {
-    MyHomePage({super.key});
-    final String npm = '23061657704'; // NPM
-    final String name = 'Gnade Yuka'; // Nama
-    final String className = 'PBP B'; // Kelas
-    final List<ItemHomepage> items = [
-         ItemHomepage("Lihat Mood", Icons.mood),
-         ItemHomepage("Tambah Mood", Icons.add),
-         ItemHomepage("Logout", Icons.logout),
-     ];
+  final String npm = '2306245472'; // NPM
+  final String name = 'Shabrina Aulia Kinanti'; // Nama
+  final String className = 'PBP B'; // Kelas
+
+  final List<ItemHomepage> items = [
+  ItemHomepage("Lihat Mood", Icons.mood),
+  ItemHomepage("Tambah Mood", Icons.add),
+  ItemHomepage("Logout", Icons.logout),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,11 @@ class MyHomePage extends StatelessWidget {
         ),
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
         backgroundColor: Theme.of(context).colorScheme.primary,
+        // Mengganti warna icon drawer menjadi putih
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      // Masukkan drawer sebagai parameter nilai drawer dari widget Scaffold
+      drawer: const LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -89,6 +96,7 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+  MyHomePage({super.key});
 }
 
 class InfoCard extends StatelessWidget {
@@ -125,10 +133,10 @@ class InfoCard extends StatelessWidget {
 }
 
 class ItemHomepage {
-     final String name;
-     final IconData icon;
+    final String name;
+    final IconData icon;
 
-     ItemHomepage(this.name, this.icon);
+    ItemHomepage(this.name, this.icon);
 }
 
 class ItemCard extends StatelessWidget {
@@ -147,14 +155,22 @@ class ItemCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       
       child: InkWell(
-        // Aksi ketika kartu ditekan.
+        // Area responsif terhadap sentuhan
         onTap: () {
-          // Menampilkan pesan SnackBar saat kartu ditekan.
+          // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-            );
+            ..showSnackBar(SnackBar(
+                content: Text("Kamu telah menekan tombol ${item.name}!")));
+
+          // Navigate ke route yang sesuai (tergantung jenis tombol)
+          if (item.name == "Tambah Mood") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MoodEntryFormPage(),
+              ));
+          }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(
@@ -182,5 +198,4 @@ class ItemCard extends StatelessWidget {
       ),
     );
   }
-  
 }
