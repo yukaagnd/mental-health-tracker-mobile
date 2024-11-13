@@ -10,6 +10,7 @@ class LeftDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
+          // Drawer Header
           DrawerHeader(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
@@ -39,24 +40,26 @@ class LeftDrawer extends StatelessWidget {
             ),
           ),
 
+          // ListTile untuk Halaman Utama
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Halaman Utama'),
-            // Bagian redirection ke MyHomePage
             onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
             },
           ),
+
+          // ListTile untuk Tambah Mood
           ListTile(
             leading: const Icon(Icons.mood),
             title: const Text('Tambah Mood'),
-            // Bagian redirection ke MoodEntryFormPage
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const MoodEntryFormPage(),

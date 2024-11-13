@@ -9,10 +9,10 @@ class MoodEntryFormPage extends StatefulWidget {
 }
 
 class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
-	final _formKey = GlobalKey<FormState>();
-	String _mood = "";
-	String _feelings = "";
-	int _moodIntensity = 0;
+  final _formKey = GlobalKey<FormState>();
+  String _mood = "";
+  String _feelings = "";
+  int _moodIntensity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,7 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Input Mood
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -56,6 +57,9 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                   },
                 ),
               ),
+          
+              
+              // Input Feelings
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -79,6 +83,8 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                   },
                 ),
               ),
+              
+              // Input Mood Intensity
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -89,6 +95,7 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
+
                   onChanged: (String? value) {
                     setState(() {
                       _moodIntensity = int.tryParse(value!) ?? 0;
@@ -105,6 +112,8 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                   },
                 ),
               ),
+              
+              // Tombol Save
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -112,7 +121,8 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          Theme.of(context).colorScheme.primary),
+                        Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -142,6 +152,12 @@ class _MoodEntryFormPageState extends State<MoodEntryFormPage> {
                               ],
                             );
                           },
+                        );
+                        // Tampilkan snackbar bahwa data berhasil disimpan
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Data berhasil disimpan!'),
+                          ),
                         );
                       }
                     },

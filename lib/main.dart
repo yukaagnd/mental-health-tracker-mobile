@@ -32,8 +32,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
               primarySwatch: Colors.deepPurple,
         ).copyWith(secondary: Colors.deepPurple[400]),
+        useMaterial3: true,
       ),
       home: MyHomePage(),
     );
   }
 }
+
+
